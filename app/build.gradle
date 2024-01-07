@@ -97,6 +97,9 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okhttp"
     implementation "androidx.paging:paging-runtime-ktx:$paging"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_interceptor"
+
+    implementation "androidx.work:work-runtime:2.7.0"
+
 }
 
 //
