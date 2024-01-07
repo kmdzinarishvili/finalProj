@@ -1,7 +1,7 @@
 package ge.edu.btu.imdb.navigation
 
 import androidx.navigation.NavController
-import ge.edu.btu.imdb.corecommon.navigation.NavControllerManager
+import ge.edu.btu.imdb.navigation.NavControllerManager
 
 class NavControllerManagerImpl(): NavControllerManager {
     private lateinit var navController: NavController

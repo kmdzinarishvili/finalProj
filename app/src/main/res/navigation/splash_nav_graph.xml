@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="ge.edu.btu.imdb.splash.presentation.fragment.SplashFragment"
+        android:name="ge.edu.btu.imdb.presentation.fragment.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" />
 

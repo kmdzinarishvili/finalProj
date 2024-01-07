@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import ge.edu.btu.imdb.corecommon.navigation.NavControllerManager
+import ge.edu.btu.imdb.navigation.NavControllerManager
 import org.koin.android.ext.android.inject
 
 class MovieActivity : AppCompatActivity() {

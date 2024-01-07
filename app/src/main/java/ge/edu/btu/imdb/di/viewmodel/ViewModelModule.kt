@@ -1,9 +1,9 @@
 package ge.edu.btu.imdb.di.viewmodel
 
-import ge.edu.btu.imdb.splash.presentation.viewmodel.SplashViewModel
-import ge.edu.btu.imdb.dashboardimpl.feature.favorites.presentation.viewmodel.FavoritesViewModel
-import ge.edu.btu.imdb.dashboardimpl.feature.home.presentation.viewmodel.HomeViewModel
-import ge.edu.btu.imdb.detailimpl.viewmodel.DetailViewModel
+import ge.edu.btu.imdb.presentation.viewmodel.SplashViewModel
+import ge.edu.btu.imdb.presentation.viewmodel.FavoritesViewModel
+import ge.edu.btu.imdb.presentation.viewmodel.HomeViewModel
+import ge.edu.btu.imdb.presentation.viewmodel.DetailViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

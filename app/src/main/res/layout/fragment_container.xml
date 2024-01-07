@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dashboardimpl.feature.container.presentation.fragment.ContainerFragment">
+    tools:context=".presentation.fragment.ContainerFragment">
 
-    <ge.edu.btu.imdb.dashboardimpl.container.feature.container.presentation.view.BottomNavigationCustomView
+    <ge.edu.btu.imdb.presentation.view.BottomNavigationCustomView
         android:id="@+id/bottomCustomView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
