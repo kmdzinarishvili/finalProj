@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="medium_Montserrat_Whisper">
+        <item name="android:textSize">@dimen/dimen_14sp</item>
+        <item name="android:textColor">@color/neutral_08_whisper</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="light_Montserrat_gray">
+        <item name="android:textSize">@dimen/dimen_12sp</item>
+        <item name="android:textColor">@color/neutral_04_grey</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="medium_Montserrat_light_gray">
+        <item name="android:textSize">@dimen/dimen_14sp</item>
+        <item name="android:textColor">@color/neutral_05_light_grey</item>
+        <item name="android:fontFamily">@font/montserrat_light</item>
+    </style>
+
+    <style name="medium_Montserrat_black">
+        <item name="android:textSize">@dimen/dimen_10sp</item>
+        <item name="android:textColor">@color/neutral_01_black</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="medium_Montserrat_whisper_small">
+        <item name="android:textSize">@dimen/dimen_10sp</item>
+        <item name="android:textColor">@color/neutral_08_whisper</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="medium_Montserrat_whisper_Big">
+        <item name="android:textSize">@dimen/dimen_16sp</item>
+        <item name="android:textColor">@color/neutral_08_whisper</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="medium_Montserrat_gray_Big">
+        <item name="android:textSize">@dimen/dimen_16sp</item>
+        <item name="android:textColor">@color/neutral_03_dark_grey</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="medium_Montserrat_yellow_Big">
+        <item name="android:textSize">@dimen/dimen_18sp</item>
+        <item name="android:textColor">@color/yellow_primary</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="medium_Montserrat">
+        <item name="android:textSize">@dimen/dimen_10sp</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+</resources>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">IMDB</string>
+    <string name="popular">Popular</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="search">Search</string>
+    <string name="cancel">Cancel</string>
+    <string name="favorite_movies">Favorite movies</string>
+    <string name="no_movies_added_yet">No movies added yet</string>
+    <string name="movies">Movies</string>
+    <string name="details">Details</string>
+    <string name="about_movie">About Movie</string>
+    <string name="unreachable_data">Data can’t be loaded</string>
+    <string name="internet_connection_or_some_other_server_error">internet connection or some other server error</string>
+</resources>
