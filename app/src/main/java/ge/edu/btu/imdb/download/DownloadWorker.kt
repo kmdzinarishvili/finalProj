@@ -2,13 +2,9 @@ package ge.edu.btu.imdb.download
 
 import android.content.ContentValues
 import android.content.Context
-import android.content.pm.PackageManager
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.paging.PagingData
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import ge.edu.btu.imdb.data.model.remote.MoviesDomainModel
@@ -21,9 +17,6 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import java.io.IOException
 
-const val FILE_NAME = "favorites.csv"
-const val FILE_TYPE = "text/csv"
-const val DIRECTORY_NAME = "IMDB"
 
 class DownloadWorker(val context: Context, workerParams: WorkerParameters) : Worker(context,
     workerParams
@@ -45,8 +38,6 @@ class DownloadWorker(val context: Context, workerParams: WorkerParameters) : Wor
                 saveCSVToFile(csvData)
             }
         }
-
-
         return result
     }
 
@@ -61,15 +52,15 @@ class DownloadWorker(val context: Context, workerParams: WorkerParameters) : Wor
     }
 
     private fun saveCSVToFile(csvData: String){
+
         val contentValues = ContentValues().apply {
-            put(MediaStore.MediaColumns.DISPLAY_NAME, FILE_NAME)
-            put(MediaStore.MediaColumns.MIME_TYPE, FILE_TYPE)
-            put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS + DIRECTORY_NAME)
+            put(MediaStore.MediaColumns.DISPLAY_NAME, Companion.FILE_NAME)
+            put(MediaStore.MediaColumns.MIME_TYPE, Companion.FILE_TYPE)
+            put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS + Companion.DIRECTORY_NAME)
         }
 
         val resolver = context.contentResolver
         val uri = resolver.insert(MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY), contentValues)
-
         uri?.let { documentUri ->
             try {
                 resolver.openOutputStream(documentUri)?.use { outputStream ->
@@ -81,5 +72,10 @@ class DownloadWorker(val context: Context, workerParams: WorkerParameters) : Wor
             }
         }
 
+    }
+    companion object {
+        const val FILE_NAME = "favorites.csv"
+        const val FILE_TYPE = "text/csv"
+        const val DIRECTORY_NAME = "/IMDB"
     }
 }
