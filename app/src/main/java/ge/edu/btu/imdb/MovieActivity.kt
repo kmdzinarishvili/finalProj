@@ -1,13 +1,17 @@
 package ge.edu.btu.imdb
 
+import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import ge.edu.btu.imdb.download.DownloadCompleteReceiver
 import ge.edu.btu.imdb.navigation.NavControllerManager
 import org.koin.android.ext.android.inject
 
-class MovieActivity : AppCompatActivity() {
+class MovieActivity : AppCompatActivity(), DownloadCompleteReceiver.DownloadCompleteListener  {
 
     private val navControllerManager by inject<NavControllerManager>()
 
@@ -15,10 +19,29 @@ class MovieActivity : AppCompatActivity() {
         findNavController(R.id.mainFragmentContainerView)
     }
 
+    private val downloadCompleteReceiver = DownloadCompleteReceiver(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         navControllerManager.setNavController(navController)
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+            downloadCompleteReceiver,
+            IntentFilter(DownloadCompleteReceiver.ACTION_FILE_WRITE_COMPLETE)
+        )
     }
+    override fun onDestroy() {
+        super.onDestroy()
+
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(downloadCompleteReceiver)
+
+    }
+
+    override fun onDownloadComplete() {
+        Toast.makeText(this, "Download Successfully Completed", Toast.LENGTH_SHORT).show()
+    }
+
+
 }

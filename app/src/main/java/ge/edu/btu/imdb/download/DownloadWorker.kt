@@ -26,8 +26,10 @@ class DownloadWorker(val context: Context, workerParams: WorkerParameters) : Wor
     private val favoritesRepository: FavoritesRepository by inject()
 
     override fun doWork(): Result {
+
         val workerScope = CoroutineScope(Dispatchers.Default)
         var result = Result.success();
+
 
         workerScope.launch {
             val moviesList =   favoritesRepository.getAllFavoriteMovies().firstOrNull()
@@ -54,8 +56,8 @@ class DownloadWorker(val context: Context, workerParams: WorkerParameters) : Wor
     private fun saveCSVToFile(csvData: String){
 
         val contentValues = ContentValues().apply {
-            put(MediaStore.MediaColumns.DISPLAY_NAME, Companion.FILE_NAME)
-            put(MediaStore.MediaColumns.MIME_TYPE, Companion.FILE_TYPE)
+            put(MediaStore.MediaColumns.DISPLAY_NAME, FILE_NAME)
+            put(MediaStore.MediaColumns.MIME_TYPE, FILE_TYPE)
             put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS + Companion.DIRECTORY_NAME)
         }
 
@@ -66,6 +68,8 @@ class DownloadWorker(val context: Context, workerParams: WorkerParameters) : Wor
                 resolver.openOutputStream(documentUri)?.use { outputStream ->
                     outputStream.write(csvData.toByteArray())
                 }
+                DownloadCompleteReceiver.sendDownloadCompleteBroadcast(context)
+
             } catch (e: IOException) {
                 e.printStackTrace()
                 Log.e("DownloadWorker", "Error saving CSV file: ${e.message}")
