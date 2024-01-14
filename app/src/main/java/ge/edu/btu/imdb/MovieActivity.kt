@@ -11,6 +11,8 @@ import ge.edu.btu.imdb.download.DownloadCompleteReceiver
 import ge.edu.btu.imdb.navigation.NavControllerManager
 import org.koin.android.ext.android.inject
 
+
+
 class MovieActivity : AppCompatActivity(), DownloadCompleteReceiver.DownloadCompleteListener  {
 
     private val navControllerManager by inject<NavControllerManager>()
@@ -27,6 +29,7 @@ class MovieActivity : AppCompatActivity(), DownloadCompleteReceiver.DownloadComp
 
         navControllerManager.setNavController(navController)
 
+
         LocalBroadcastManager.getInstance(this).registerReceiver(
             downloadCompleteReceiver,
             IntentFilter(DownloadCompleteReceiver.ACTION_FILE_WRITE_COMPLETE)
@@ -34,7 +37,6 @@ class MovieActivity : AppCompatActivity(), DownloadCompleteReceiver.DownloadComp
     }
     override fun onDestroy() {
         super.onDestroy()
-
         LocalBroadcastManager.getInstance(this).unregisterReceiver(downloadCompleteReceiver)
 
     }

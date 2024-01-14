@@ -30,7 +30,6 @@ class DownloadWorker(val context: Context, workerParams: WorkerParameters) : Wor
         val workerScope = CoroutineScope(Dispatchers.Default)
         var result = Result.success();
 
-
         workerScope.launch {
             val moviesList =   favoritesRepository.getAllFavoriteMovies().firstOrNull()
             if (moviesList == null){
@@ -69,7 +68,6 @@ class DownloadWorker(val context: Context, workerParams: WorkerParameters) : Wor
                     outputStream.write(csvData.toByteArray())
                 }
                 DownloadCompleteReceiver.sendDownloadCompleteBroadcast(context)
-
             } catch (e: IOException) {
                 e.printStackTrace()
                 Log.e("DownloadWorker", "Error saving CSV file: ${e.message}")
