@@ -2,22 +2,21 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
-    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp'
 }
 
 android {
     namespace 'ge.edu.btu.imdb'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "ge.edu.btu.imdb"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
 
     }
 
@@ -40,20 +39,16 @@ android {
 }
 
 ext {
-    core = "1.10.1"
+    core = "1.12.0"
     koin = "3.4.0"
     appcompat = "1.5.1"
-    material = "1.9.0"
+    material = "1.11.0"
     constraintlayout = "2.1.4"
-    navigation_fragment_ktx = "2.5.3"
-    navigation_ui_ktx = "2.5.3"
-    lifecycle_viewmodel_ktx = "2.5.1"
-    lifecycle_runtime_ktx = "2.5.1"
+    navigation_ktx = "2.7.6"
+    lifecycle_ktx = "2.7.0"
     fragment_ktx = "1.5.6"
-    glide = "4.13.2"
-    room_runtime = "2.4.3"
-    room_compiler = "2.4.3"
-    room_ktx = "2.4.3"
+    glide = "4.16.0"
+    room = "2.6.1"
     kotlin_reflect = "1.8.10"
     retrofit = "2.9.0"
     moshi = "1.13.0"
@@ -64,9 +59,9 @@ ext {
     junit_ext = "1.1.5"
     espresso_core = "3.5.1"
     okhttp = "4.9.1"
-    paging = "3.0.1"
+    paging = "3.2.1"
     okhttp3_interceptor = "4.11.0"
-    worker = "2.7.0"
+    worker = "2.9.0"
 }
 
 dependencies {
@@ -75,16 +70,16 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompat"
     implementation "com.google.android.material:material:$material"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_fragment_ktx"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigation_ui_ktx"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_viewmodel_ktx"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_runtime_ktx"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_ktx"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_ktx"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_ktx"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_ktx"
     implementation "androidx.fragment:fragment-ktx:$fragment_ktx"
     implementation "com.github.bumptech.glide:glide:$glide"
-    implementation "androidx.room:room-runtime:$room_runtime"
-    annotationProcessor "androidx.room:room-compiler:$room_compiler"
-    kapt "androidx.room:room-compiler:$room_compiler"
-    implementation "androidx.room:room-ktx:$room_ktx"
+    implementation "androidx.room:room-runtime:$room"
+    annotationProcessor "androidx.room:room-compiler:$room"
+    ksp "androidx.room:room-compiler:$room"
+    implementation "androidx.room:room-ktx:$room"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_reflect"
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.moshi:moshi:$moshi"
