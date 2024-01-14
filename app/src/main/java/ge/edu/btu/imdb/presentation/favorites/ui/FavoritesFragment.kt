@@ -1,6 +1,15 @@
 package ge.edu.btu.imdb.presentation.favorites.ui
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import ge.edu.btu.imdb.common.extension.lifecycleScope
 import ge.edu.btu.imdb.domain.model.MoviesDomainModel
 import ge.edu.btu.imdb.common.extension.hide
@@ -11,6 +20,7 @@ import ge.edu.btu.imdb.presentation.favorites.adapter.FavoritesAdapter
 import ge.edu.btu.imdb.databinding.FragmentFavoritesBinding
 import ge.edu.btu.imdb.presentation.base.CoreBaseFragment
 import ge.edu.btu.imdb.presentation.favorites.vm.FavoritesViewModel
+import ge.edu.btu.imdb.presentation.favorites.worker.DownloadWorker
 import kotlinx.coroutines.flow.collectLatest
 import kotlin.reflect.KClass
 
@@ -18,7 +28,6 @@ import kotlin.reflect.KClass
 class FavoritesFragment : CoreBaseFragment<FavoritesViewModel>() {
 
     private val binding by viewBinding(FragmentFavoritesBinding::bind)
-
     override val viewModelClass: KClass<FavoritesViewModel>
         get() = FavoritesViewModel::class
 
@@ -56,17 +65,39 @@ class FavoritesFragment : CoreBaseFragment<FavoritesViewModel>() {
             viewModel.navigateToDetails(item)
         }
         binding.downloadImageView.setOnClickListener {
-            Toast.makeText(context, "DOWNLOADING", Toast.LENGTH_SHORT).show();
+            if (checkPermissions()) {
+                val constraints = Constraints.Builder()
+                    .setRequiredNetworkType(NetworkType.CONNECTED)
+                    .build()
 
-//            val constraints = Constraints.Builder()
-//                .setRequiredNetworkType(NetworkType.CONNECTED)
-//                .build()
-//
-//            val csvWorkRequest = OneTimeWorkRequest.Builder(DownloadWorker::class.java)
-//                .setConstraints(constraints)
-//                .build()
-//
-//            context?.let { WorkManager.getInstance(it).enqueue(csvWorkRequest) }
+                val csvWorkRequest = OneTimeWorkRequest.Builder(DownloadWorker::class.java)
+                    .setConstraints(constraints)
+                    .build()
+
+                context?.let { WorkManager.getInstance(it).enqueue(csvWorkRequest) }
+            }
+        }
+    }
+
+    private fun checkPermissions(): Boolean{
+        val sdkAfter29 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+        if (sdkAfter29){
+            return true
+        }
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            == PackageManager.PERMISSION_GRANTED
+        ) {
+            return true
+        }else {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                1
+            )
+            return false
         }
     }
 
