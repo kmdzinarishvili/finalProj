@@ -1,5 +1,6 @@
 package ge.edu.btu.imdb.presentation.favorites.ui
 
+import android.widget.Toast
 import ge.edu.btu.imdb.common.extension.lifecycleScope
 import ge.edu.btu.imdb.domain.model.MoviesDomainModel
 import ge.edu.btu.imdb.common.extension.hide
@@ -53,6 +54,19 @@ class FavoritesFragment : CoreBaseFragment<FavoritesViewModel>() {
         }
         favoritesAdapter.setOnItemClickListener { item ->
             viewModel.navigateToDetails(item)
+        }
+        binding.downloadImageView.setOnClickListener {
+            Toast.makeText(context, "DOWNLOADING", Toast.LENGTH_SHORT).show();
+
+//            val constraints = Constraints.Builder()
+//                .setRequiredNetworkType(NetworkType.CONNECTED)
+//                .build()
+//
+//            val csvWorkRequest = OneTimeWorkRequest.Builder(DownloadWorker::class.java)
+//                .setConstraints(constraints)
+//                .build()
+//
+//            context?.let { WorkManager.getInstance(it).enqueue(csvWorkRequest) }
         }
     }
 
