@@ -6,17 +6,17 @@
     app:startDestination="@id/containerFragment">
     <fragment
         android:id="@+id/containerFragment"
-        android:name="ge.edu.btu.imdb.presentation.fragment.ContainerFragment"
+        android:name="ge.edu.btu.imdb.presentation.container.ui.ContainerFragment"
         android:label="fragment_container"
         tools:layout="@layout/fragment_container" />
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="ge.edu.btu.imdb.presentation.fragment.FavoritesFragment"
+        android:name="ge.edu.btu.imdb.presentation.favorites.ui.FavoritesFragment"
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="ge.edu.btu.imdb.presentation.fragment.HomeFragment"
+        android:name="ge.edu.btu.imdb.presentation.home.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 </navigation>

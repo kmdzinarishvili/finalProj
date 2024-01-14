@@ -1,7 +1,7 @@
 package ge.edu.btu.imdb.di.network
 
-import ge.edu.btu.imdb.constants.Constants.BASE_URL
-import ge.edu.btu.imdb.data.network.AuthInterceptor
+import ge.edu.btu.imdb.common.constants.Constants.BASE_URL
+import ge.edu.btu.imdb.data.remote.network.AuthInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient

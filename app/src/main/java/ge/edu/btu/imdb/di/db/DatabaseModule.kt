@@ -2,7 +2,7 @@ package ge.edu.btu.imdb.di.db
 
 import android.app.Application
 import androidx.room.Room
-import ge.edu.btu.imdb.data.database.FavoriteMoviesDatabase
+import ge.edu.btu.imdb.data.local.database.FavoriteMoviesDatabase
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 

@@ -1,7 +1,8 @@
 package ge.edu.btu.imdb.data.mapper
 
-import ge.edu.btu.imdb.data.model.remote.MoviesDomainModel
-import ge.edu.btu.imdb.data.model.FavoriteMoviesEntity
+import ge.edu.btu.imdb.common.mapper.ModelMapper
+import ge.edu.btu.imdb.domain.model.MoviesDomainModel
+import ge.edu.btu.imdb.data.model.local.FavoriteMoviesEntity
 
 class DomainToEntityMapper : ModelMapper<MoviesDomainModel.ResultDomain, FavoriteMoviesEntity> {
     override operator fun invoke(model: MoviesDomainModel.ResultDomain): FavoriteMoviesEntity {

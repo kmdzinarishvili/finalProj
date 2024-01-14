@@ -1,7 +1,7 @@
 package ge.edu.btu.imdb.di.db
 
 import ge.edu.btu.imdb.data.mapper.DomainToEntityMapper
-import ge.edu.btu.imdb.data.mapper.EntityToDomainMapper
+import ge.edu.btu.imdb.domain.mapper.EntityToDomainMapper
 import org.koin.dsl.module
 
 val coreDBMapperModule = module {

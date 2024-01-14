@@ -1,6 +1,6 @@
 package ge.edu.btu.imdb.di.service
 
-import ge.edu.btu.imdb.data.network.MoviesApiService
+import ge.edu.btu.imdb.data.remote.network.MoviesApiService
 import org.koin.dsl.module
 import retrofit2.Retrofit
 

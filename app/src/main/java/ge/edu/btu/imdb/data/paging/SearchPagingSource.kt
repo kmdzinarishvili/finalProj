@@ -3,7 +3,7 @@ package ge.edu.btu.imdb.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import ge.edu.btu.imdb.dashboardimpl.remote.model.dto.MoviesDTOModel
-import ge.edu.btu.imdb.data.network.MoviesApiService
+import ge.edu.btu.imdb.data.remote.network.MoviesApiService
 import retrofit2.HttpException
 
 /**

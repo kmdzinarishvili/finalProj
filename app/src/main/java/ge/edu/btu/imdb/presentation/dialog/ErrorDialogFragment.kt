@@ -2,7 +2,7 @@ package ge.edu.btu.imdb.presentation.dialog
 
 import ge.edu.btu.imdb.R
 import ge.edu.btu.imdb.databinding.FragmentErrorDialogBinding
-import ge.edu.btu.imdb.extension.viewBinding
+import ge.edu.btu.imdb.common.extension.viewBinding
 
 class ErrorDialogFragment : BaseDialogFragment() {
 

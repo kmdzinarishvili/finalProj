@@ -4,11 +4,12 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
-import ge.edu.btu.imdb.data.model.remote.MoviesDomainModel
+import ge.edu.btu.imdb.domain.model.MoviesDomainModel
 import ge.edu.btu.imdb.data.paging.MoviesPagingSource
 import ge.edu.btu.imdb.data.paging.SearchPagingSource
-import ge.edu.btu.imdb.data.network.MoviesApiService
-import ge.edu.btu.imdb.data.mapper.MoviesDTOToDomainMapper
+import ge.edu.btu.imdb.data.remote.network.MoviesApiService
+import ge.edu.btu.imdb.domain.mapper.MoviesDTOToDomainMapper
+import ge.edu.btu.imdb.domain.repository.remote.MoviesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/neutral_01_black"
-    tools:context=".presentation.fragment.HomeFragment">
+    tools:context=".presentation.home.ui.HomeFragment">
 
-    <ge.edu.btu.imdb.presentation.view.SearchCustomView
+    <ge.edu.btu.imdb.presentation.custom_view.SearchCustomView
         android:id="@+id/searchCustomView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
