@@ -2,6 +2,7 @@ package ge.edu.btu.imdb.download
 
 import android.content.ContentValues
 import android.content.Context
+import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
@@ -15,6 +16,8 @@ import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
 
 
@@ -33,6 +36,7 @@ class DownloadWorker(val context: Context, workerParams: WorkerParameters) : Wor
         workerScope.launch {
             val moviesList =   favoritesRepository.getAllFavoriteMovies().firstOrNull()
             if (moviesList == null){
+                Log.e("DownloadWorker", "Error: Favorite Movies Empty.")
                 result = Result.failure()
             }else{
                 val csvData = convertToCSV(moviesList)
@@ -43,7 +47,7 @@ class DownloadWorker(val context: Context, workerParams: WorkerParameters) : Wor
     }
 
     private fun convertToCSV(mList: List<MoviesDomainModel.ResultDomain>): String {
-        val header = "Id,Title,Rating,ReleaseDate\n"
+        val header = "Id,Title,Rating,Release Date\n"
         val csvData = StringBuilder(header)
         for (movie in mList) {
             val line = "${movie.id},${movie.title},${movie.voteAverage},${movie.releaseDate}\n"
@@ -57,23 +61,37 @@ class DownloadWorker(val context: Context, workerParams: WorkerParameters) : Wor
         val contentValues = ContentValues().apply {
             put(MediaStore.MediaColumns.DISPLAY_NAME, FILE_NAME)
             put(MediaStore.MediaColumns.MIME_TYPE, FILE_TYPE)
-            put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS + Companion.DIRECTORY_NAME)
+            put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS + DIRECTORY_NAME)
         }
 
         val resolver = context.contentResolver
-        val uri = resolver.insert(MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY), contentValues)
-        uri?.let { documentUri ->
-            try {
-                resolver.openOutputStream(documentUri)?.use { outputStream ->
-                    outputStream.write(csvData.toByteArray())
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val uri = resolver.insert(MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY), contentValues)
+            uri?.let { documentUri ->
+                try {
+                    resolver.openOutputStream(documentUri)?.use { outputStream ->
+                        outputStream.write(csvData.toByteArray())
+                    }
+                    DownloadCompleteReceiver.sendDownloadCompleteBroadcast(context)
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                    Log.e("DownloadWorker", "Error saving CSV file: ${e.message}")
                 }
+            }
+
+        } else {
+            val externalDir = context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+
+            if (externalDir != null ) {
+                val file = File(externalDir, FILE_NAME)
+                val outputStream = FileOutputStream(file)
+                outputStream.write(csvData.toByteArray())
+                outputStream.close()
                 DownloadCompleteReceiver.sendDownloadCompleteBroadcast(context)
-            } catch (e: IOException) {
-                e.printStackTrace()
-                Log.e("DownloadWorker", "Error saving CSV file: ${e.message}")
+            } else {
+                Log.e("DownloadWorker", "Error: External directory not available.")
             }
         }
-
     }
     companion object {
         const val FILE_NAME = "favorites.csv"
