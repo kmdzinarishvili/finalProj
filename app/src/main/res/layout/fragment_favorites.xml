@@ -33,6 +33,16 @@
         tools:listitem="@layout/movie_item_layout" />
 
     <ImageView
+        android:id="@+id/downloadImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_15dp"
+        android:layout_marginEnd="@dimen/dimen_15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_file_download_24"/>
+
+    <ImageView
         android:id="@+id/emptyFavoritesImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
