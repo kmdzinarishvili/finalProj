@@ -1,5 +1,6 @@
 # Movie App
-
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/kmdzinarishvili/finalProj/edit/georgianReadme/README.md)
+[![pt-br](https://img.shields.io/badge/lang-ka-green.svg)](https://github.com/kmdzinarishvili/finalProj/edit/georgianReadme/README.ka.md)
 ## Purpose
 
 The Movie App aims to provide users with a seamless experience to explore and search through a curated list of movies.
