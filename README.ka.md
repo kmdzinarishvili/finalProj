@@ -1,6 +1,6 @@
 # ფილმების აპლიკაცია
-[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/kmdzinarishvili/finalProj/edit/georgianReadme/README.md)
-[![pt-br](https://img.shields.io/badge/lang-ka-green.svg)](https://github.com/kmdzinarishvili/finalProj/edit/georgianReadme/README.ka.md)
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/kmdzinarishvili/finalProj/blob/georgianReadme/README.md)
+[![pt-br](https://img.shields.io/badge/lang-ka-green.svg)](https://github.com/kmdzinarishvili/finalProj/blob/georgianReadme/README.ka.md)
 ## დანიშნულება
 
 ამ აპლიკაციის მიზანია მომხმარებლებს მისცეს საშუალება რომ დაათვალიაროს და მოიძიოს ფილმები. 
